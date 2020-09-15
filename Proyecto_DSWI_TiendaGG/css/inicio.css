@@ -1,0 +1,213 @@
+/* -------------------------------------------------------------------------- */
+/*                                   Inicio                                   */
+/* -------------------------------------------------------------------------- */
+.main-section1 {
+	height: auto;
+	width: 100%;
+	background-color: #FCFBFC;
+}
+
+.main-section {
+	height: auto;
+	width: 100%;
+	background-color: #ECECEC;
+}
+
+.carousel-control-next, .carousel-control-prev {
+	z-index: 0;
+}
+
+.titulo {
+	text-align: center;
+	padding: 2rem;
+}
+
+#tienda-online {
+	display: flex;
+	justify-content: space-around;
+	padding-bottom: 2rem;
+}
+
+.tienda {
+	height: 200px;
+	max-width: 300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.tienda i {
+	height: 80px;
+	width: 80px;
+	border-radius: 50%;
+	font-size: 3rem;
+	margin-bottom: 2rem;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	line-height: 5rem;
+}
+
+.tienda:nth-child(1) i {
+	background-color: #FCD325;
+}
+
+.tienda:nth-child(2) i {
+	background-color: #FA9800;
+}
+
+.tienda:nth-child(3) i {
+	background-color: #0074AE;
+}
+
+.tienda p {
+	text-align: center;
+}
+
+#card-container {
+	padding-bottom: 2rem;
+	display: flex;
+	justify-content: space-around;
+}
+
+.centrar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.card {
+	min-height: 250px;
+	min-width: 250px;
+}
+
+#mail-container {
+	display: flex;
+	justify-content: space-around;
+}
+
+#mail-info {
+	padding: 2rem;
+	width: 50%;
+}
+
+#mail {
+	padding: 1rem 2rem;
+	width: 50%;
+}
+
+#mail-info h3 {
+	padding-bottom: 1rem;
+}
+
+#mail {
+	display: flex;
+	align-items: center;
+}
+
+.form-mail {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: column;
+}
+
+.email-btn {
+	text-align: center;
+	padding-top: 1rem;
+}
+
+.email {
+	width: 80%;
+	position: relative;
+	height: 50px;
+	overflow: hidden;
+}
+
+.email input {
+	width: 100%;
+	height: 100%;
+	background-color: #FCFBFC;
+	color: gray;
+	padding-top: 20px;
+	border: none;
+	outline: none;
+}
+
+.email label {
+	position: absolute;
+	bottom: 0px;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	border-bottom: 1px solid #343A40;
+	margin: 0;
+}
+
+.email label::after {
+	content: "";
+	position: absolute;
+	left: 0px;
+	bottom: -1px;
+	width: 100%;
+	height: 100%;
+	border-bottom: 3px solid #212529;
+	transform: translateX(-100%);
+	transition: transform 0.3s ease;
+}
+
+.email-content {
+	position: absolute;
+	bottom: 3px;
+	left: 0;
+	transition: all 0.3s ease;
+}
+
+.email input:focus+.label-email .email-content, .email input:valid+.label-email .email-content
+	{
+	transform: translateY(-100%);
+	font-size: 1rem;
+	color: #343A40;
+}
+
+.email input:focus+.label-email .email-content, .email input:valid+.label-email .email-content
+	{
+	transform: translateY(-150%);
+	font-size: 14px;
+	color: #343A40;
+}
+
+.email input:focus+.label-email::after, .email input:valid+.label-email::after
+	{
+	transform: translateX(0%);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                 Inicio    producto                            */
+/* -------------------------------------------------------------------------- */
+.produ{
+    padding: 0 !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 Fin  producto                                     */
+/* -------------------------------------------------------------------------- */
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                              Responsive Design                             */
+/* -------------------------------------------------------------------------- */
+@media ( max-width : 767px) {
+	#mail-info, #mail {
+		width: 100% !important;
+	}
+	#email-btn {
+		padding-top: 1rem;
+	}
+}

@@ -1,0 +1,7 @@
+﻿@{
+    string tipo = ViewContext.ViewBag.tipo;
+
+    if(tipo == "Cliente") { Layout = "~/Views/Shared/_LayoutCliente.cshtml"; }
+    if(tipo == "Admin") { Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; }
+
+}

@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/inicio.css">
+    <link rel="icon" type="image/png" href="img/fantasma.png">
+    <title>Tienda GG</title> 
+
+</head>
+<body>
+
+    <!-- ------------------------------- Navbar -------------------------------- -->
+    <header>
+        <nav id="bar" class="navbar bg-dark">
+            <div id="r-icons" class="d-flex">
+                <div id="menu">
+                    <i class="fas fa-bars ml-2"></i>
+                </div>
+                <div id="game">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+            </div>
+            <div id="links" class="d-flex">
+                @Html.ActionLink("Inicio", "InicioAdmin", null, new { @class = "nav-link" })
+                @Html.ActionLink("Productos", "Index", null, new { @class = "nav-link" })
+                <a class="nav-logo" href="~/Negocios/InicioAdmin">
+                    <img src="~/img/TiendaGG-logo.png"
+                         alt="logo" width="120" height="40">
+                </a>
+                <a class="nav-link" href="">Productos</a>
+                <a class="nav-link" href="">Soporte</a>
+            </div>
+            <div id="l-icons" class="d-flex justify-content-end">
+                <div id="user" class="dropdown">
+                    <div href="#" class="dropdown-toogle" data-toggle="dropdown"
+                         id="dwnProfile" role="button">
+                        <i class="fas fa-user-alt"></i>
+                    </div>
+                    <div class="dropdown-menu" aria-labelledby="dwnProfile">
+                        <div class="text-center" href="#">
+                            <div id="user-profile">
+                                <h5>Bienvenido</h5>
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h6 class="usuario"></h6>
+                            <p class="correo" style="color: black;"></p>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="text-center" href="#">
+                            <div id="user-profile">
+                                <i class="mt-2 fas fa-chart-line"></i>
+                            </div>
+                            <h6>Reportes</h6>
+                            <div class="row clearfix" style="margin: 1% 5%; text-decoration: none;">
+                                <div class="menu-item" style="margin-right: 5%;">
+                                    <span><i class="mt-2 fas fa-shopping-cart"></i></span><br>
+                                    <a href="">Ventas</a>
+                                </div>
+                                <div class="menu-item" style="margin-right: 5%;">
+                                    <span><i class="mt-2 fas fa-gamepad"></i></span><br>
+                                    <a href="">Producto</a>
+                                </div>
+                                <div class="menu-item">
+                                    <span><i class="mt-2 fas fa-users"></i></span><br>
+                                    <a href="">Clientes</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div id="logout" class="text-center">
+                            <i class="fas fa-power-off mr-2"></i> <a href="" class="">
+                                Cerrar
+                                sesión
+                            </a>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ----------------------------- Fin Navbar ------------------------------ -->
+    <!-- ------------------------------- Inicio -------------------------------- -->
+    <main style=" margin : 50px 10% 50px 10%">
+    @RenderBody()
+    </main>
+    <!-- ----------------------------- Fin Inicio ------------------------------ -->
+    <!-- ------------------------------- Footer -------------------------------- -->
+
+    <footer>
+        <div id="main-footer">
+            <div id="footer-container" class="container">
+                <div id="footer-info" style="text-align: center;">
+                    <marquee direction="right">
+                        <img src="~/img/TiendaGG-logo.png" alt="logo" height="100px"
+                             width="250px">
+                        <br>
+                        <h2 style="color: white;">Sitio Web de "Tienda GG"</h2>
+                    </marquee>
+                </div>
+                <div id="footer-links">
+                    <div class="links-container">
+                        <h5>TIENDA GG</h5>
+                        <ul>
+                            <li class="link"><a href="">Inicio</a></li>
+                            <li class="link"><a href="">Productos</a></li>
+                            <li class="link"><a href="">Videojuegos</a></li>
+                            <li class="link"><a href="">Soporte</a></li>
+                        </ul>
+                    </div>
+                    <div class="social-media">
+                        <a href="https://es-la.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/?hl=es-la"><i class="fab fa-instagram"></i></a>
+                        <a href="https://outlook.live.com/owa/"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="copyright">
+            <small>© 2019. Todos los derechos reservados.</small>
+        </div>
+    </footer>
+
+    <!-- ------------------------------- Fotter -------------------------------- -->
+
+    <div id="sidebar">
+        <div id="sidebar-links" class="d-flex">
+            <div id="close">
+                <i class="fas fa-times"></i>
+            </div>
+            <a class="sidebar-link" href="">Inicio</a>
+            <a class="sidebar-link" href="">Productos</a>
+            <a class="sidebar-link" href="">Videojuegos</a>
+            <a class="sidebar-link" href="">Soporte</a>
+        </div>
+    </div>
+
+    <!-- ----------------------------- Javascript ------------------------------ -->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="~/js/app.js"></script>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+</html>

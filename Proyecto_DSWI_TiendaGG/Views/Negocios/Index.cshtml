@@ -1,0 +1,151 @@
+﻿@model IEnumerable<Proyecto_DSWI_TiendaGG.Models.Producto>
+
+@{
+    ViewBag.Title = "Index";
+    int p = (int)ViewBag.p;
+    string term = ViewBag.term;
+    string idcat = ViewBag.idcat;
+    int c = ViewBag.c;
+}
+
+<style>
+    #botones {
+        margin: 10px 0 10px 0;
+        padding: 5px 5px 5px 5px;
+        text-align: center;
+    }
+</style>
+
+<h2>Productos</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-warning", @style = "color : white;" })
+</p>
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-4">
+            <em>Categoria : </em>
+            <br />
+            @Html.DropDownList("idcat", (SelectList)ViewBag.categorias, new { @class = "form-control" })
+            <br />
+        </div>
+        <div class="col-md-4">
+            <em>Descripcion : </em>
+            <br />
+            @Html.TextBox("term", null, new { @class = "form-control" })
+            <br />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+    <button name="p" value="0" class="btn btn-warning" style="color : white;">Buscar</button>
+}
+<br />
+
+<table class="table table-hover">
+    <tr class="thead-dark">
+        <th>
+            @Html.DisplayNameFor(model => model.cod_pro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.desc_pro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pre_pro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stock_pro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cod_cat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.est_pro)
+        </th>
+        <th colspan="1">
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="thead-light">
+            <td>
+                @Html.DisplayFor(modelItem => item.cod_pro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.desc_pro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pre_pro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stock_pro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cod_cat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.est_pro)
+            </td>
+            <td colspan="1">
+                @Html.ActionLink("Edit", "Edit", new { cod = item.cod_pro }) |
+                @Html.ActionLink("Detalles", "Detalles", new { cod = item.cod_pro }) |
+                @Html.ActionLink("Delete", "Delete", new { cod = item.cod_pro })
+            </td>
+        </tr>
+    }
+
+</table>
+<div id="botones">
+    @Html.ActionLink("<<",
+                          "Index",
+                          "Negocios",
+                          new { p = p, op = "-", idcat = idcat, term = term },
+                          new { @class = "btn btn-warning", @style = "color : white;" })
+    @for (int i = 0; i < (int)ViewBag.pags; i++)
+    {
+        if (c == 0)
+        {
+            <em>Haz una busqueda ;)</em>
+        }
+        if (i == (int)ViewBag.p)
+        {
+            @Html.ActionLink((i + 1).ToString(),
+                           "Index",
+                           "Negocios",
+                           new { p = i, idcat = idcat, term = term },
+                           new { @class = "btn btn-warning", @style = "color : white;" })
+        }
+        else
+        {
+            @Html.ActionLink((i + 1).ToString(),
+                         "Index",
+                         "Negocios",
+                         new { p = i, idcat = idcat, term = term },
+                         new { @class = "btn btn-default" })
+        }
+
+
+    }
+    @Html.ActionLink(">>",
+                           "Index",
+                           "Negocios",
+                           new { p = p, op = "+", idcat = idcat, term = term },
+                           new
+                               {
+                                   @class = "btn btn-warning",
+                               @style = "color : white;"
+                               })
+</div>
+<div>
+    <h3>Se encontraron @c registros</h3>
+</div>
+

@@ -1,0 +1,65 @@
+﻿@model Proyecto_DSWI_TiendaGG.Models.Producto
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Producto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cod_pro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cod_pro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.desc_pro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.desc_pro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pre_pro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pre_pro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stock_pro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stock_pro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cod_cat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cod_cat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.est_pro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.est_pro)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
