@@ -1,0 +1,118 @@
+﻿@model Proyecto_DSWI_TiendaGG.Models.Producto
+
+@{
+    ViewBag.Title = "EditProducto";
+}
+<style>
+    .seccion {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 10px;
+        background-color: transparent;
+    }
+
+    .btn-warning, .btn-danger {
+        font-size: 18pt;
+        color: white;
+        margin: 3px 1px 3px 1px;
+    }
+</style>
+
+<div style="text-align:center;">
+    <h1 style="color: white; font-size: 32pt;">Actualizacion de datos del Producto</h1>
+</div>
+
+@using (Html.BeginForm("EditProducto", "Negocios", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{<div class="seccion">
+        <div class="form_wrapper" style=" width:45%;">
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="input_field">
+                    <span><i aria-hidden="true" class="fa fa-indent"></i></span>
+                    @Html.EditorFor(model => model.cod_pro, new { htmlAttributes = new { @readonly = "readonly" } })
+                </div>
+
+                <div class="input_field">
+                    <span><i aria-hidden="true" class="fa fa-align-justify "></i></span>
+                    @Html.EditorFor(model => model.desc_pro, new { htmlAttributes = new { @placeholder = "Ingrese descripcion" } })
+
+                </div>
+
+                <div class="input_field">
+                    <span><i aria-hidden="true" class="fas fa-money-bill"></i></span>
+                    @Html.EditorFor(model => model.pre_pro, new { htmlAttributes = new { @placeholder = "Ingrese precio" } })
+
+                </div>
+
+                <div class="input_field">
+                    <span><i aria-hidden="true" class="fas 	fas fa-list-ol"></i></span>
+                    @Html.EditorFor(model => model.stock_pro, new { htmlAttributes = new { @placeholder = "Ingrese stock", @type = "text" } })
+
+                </div>
+
+                <div class="input_field">
+                    <div class="select_option">
+                        <span><i aria-hidden="true" class="select_arrow"></i></span>
+                        @Html.DropDownList("cod_cat", (SelectList)ViewBag.categorias)
+                    </div>
+                </div>
+                <div class="form-group" style="text-align:center;">
+                    <button type="submit" class="btn btn-warning">Actualizar</button>
+                    @Html.ActionLink("Ir al Inicio", "InicioAdmin", null, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Ir al Listado de Registros", "ConsultaProductos", null, new { @class = "btn btn-danger" })
+                </div>
+                <br />
+                <div style="color:darkgoldenrod; font-size:18pt;">
+                    <strong>Mensaje :</strong> @ViewBag.mensaje
+                </div>
+                <br />
+                <div style="color:darkred;font-size:18pt;">
+                    <strong>
+                        Error :
+                    </strong>
+                    @Html.ValidationMessageFor(model => model.desc_pro, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.pre_pro, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.stock_pro, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+        </div>
+        <aside class="form_wrapper" style="width:45%; text-align:center;">
+
+            <input name="archivo" type="file" accept="image/*" class="form-control" id="foto" />
+            <br />
+            <div class="lienzo">
+                <h3 style="color: darkgoldenrod; font-size: 24pt;"><strong>Vista previa</strong></h3>
+                <br />
+                <img alt="" src="~/img/250x250.png" width="400px" height="400px" id="blah" style="border:5px solid darkred; border-radius:5px;">
+            </div>
+        </aside>
+
+    </div>
+}
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script id="rendered-js">
+    function readImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result); // Renderizamos la imagen
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#foto").change(function () {
+        // Código a ejecutar cuando se detecta un cambio de archivO
+        readImage(this);
+    });
+      //# sourceURL=pen.js
+</script>

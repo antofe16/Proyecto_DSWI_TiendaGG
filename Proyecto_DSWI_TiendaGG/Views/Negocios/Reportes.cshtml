@@ -1,0 +1,150 @@
+﻿@model IEnumerable<Proyecto_DSWI_TiendaGG.Models.CabRep>
+
+@{
+    ViewBag.Title = "Reportes";
+    string[] meses = { "Nada :v", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
+    List<Proyecto_DSWI_TiendaGG.Models.RepDet> detalle = (List<Proyecto_DSWI_TiendaGG.Models.RepDet>)ViewBag.detalle;
+    Proyecto_DSWI_TiendaGG.Models.CabRep cab = (Proyecto_DSWI_TiendaGG.Models.CabRep)ViewBag.reporte;
+    string height = detalle.Sum(d => d.cantidadVen) + "0px";
+    int h = detalle.Sum(d => d.cantidadVen);
+}
+<style>
+    #global {
+        height: 50%;
+        width: 100%;
+        border: 1px solid #ddd;
+        background-color: #343a40;
+        overflow-y: scroll;
+    }
+        .chart-wrap .grid {
+         width:@height ;
+         }
+        .chart-wrap .grid::after {
+            --value:'@h';
+        }
+        aside {
+            width: 20%;
+        }
+
+        .contenedor {
+            display: flex;
+            flex-direction: row;
+            width:100%;
+            background-color:transparent;
+        }
+
+        section {
+            margin: auto;
+            width: 80%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: transparent;
+        }
+
+        .btn-warning, .btn-danger {
+            font-size: 18pt;
+            color: white;
+            margin: 3px 1px 3px 1px;
+        }
+</style>
+
+<div class="contenedor">
+    <aside>
+        <h1>Mes - Año</h1>
+        <br />
+        @foreach (var item in Model)
+        {
+            <div>
+                @Html.ActionLink(meses[item.mes] + "-" + item.año, "Reportes", new { mes = item.mes, año = item.año }, new { @class = "btn btn-warning" })
+            </div>
+        }
+        <br />
+        <h2 style="color:darkgreen; width:80%;">@ViewBag.msg</h2>
+    </aside>
+    @if (detalle != null && cab != null)
+    {
+<section style="">
+    @Html.ActionLink("Generar PDF", "GenerarPDF", new { año = cab.año, mes = cab.mes }, new { @class = "btn btn-warning" })
+    <br />
+    <br />
+    <table class="table table-dark">
+        <tr>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Total de Ventas
+            </th>
+            <th>
+                Total Acumulado
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @meses[cab.mes] - @cab.año
+            </td>
+            <td>
+                @cab.ventasTot
+            </td>
+            <td>
+                @cab.acumuladoTot
+            </td>
+        </tr>
+    </table>
+    <table class="table table-dark">
+        <tr>
+            <th colspan="2">
+                Detalle de Ventas
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Producto
+            </th>
+            <th>
+                Cantidad vendida
+            </th>
+        </tr>
+        @foreach (var item in detalle)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.producto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cantidadVen)
+                </td>
+            </tr>
+        }
+    </table>
+
+</section>
+
+    }
+</div>
+
+
+@if (detalle != null && cab != null)
+{
+<div id="global">
+
+
+    <div style="background-color: #343a40;
+             width:100%;" class="chart-wrap">
+        <div class="title">Estadisticas de la tabla</div>
+        <div class="grid">
+
+            @foreach (var item in detalle)
+            {
+                string tam = item.cantidadVen + "0px";
+                <div class="barr"  style="--bar-value: @tam;" data-name="@item.producto - (@item.cantidadVen)" title="@item.producto"></div>
+            }
+        </div>
+        <div class="title"></div>
+    </div>
+</div>
+}
+

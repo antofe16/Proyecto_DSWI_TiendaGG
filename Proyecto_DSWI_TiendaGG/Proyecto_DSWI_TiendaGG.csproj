@@ -45,6 +45,42 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.5\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.barcodes, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.barcodes.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.forms, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.forms.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.io, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.io.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.kernel, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.layout, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.layout.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.pdfa, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.sign, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.sign.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.styledxmlparser, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.styledxmlparser.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.svg, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.svg.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -126,9 +162,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Administrador.cs" />
+    <Compile Include="Models\Boleta.cs" />
+    <Compile Include="Models\CabRep.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Detalle.cs" />
     <Compile Include="Models\Producto.cs" />
+    <Compile Include="Models\RepDet.cs" />
+    <Compile Include="Modulo\AdminDAO.cs" />
+    <Compile Include="Modulo\BoletaDAO.cs" />
+    <Compile Include="Modulo\ClienteDAO.cs" />
     <Compile Include="Modulo\ProductoDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -140,6 +183,7 @@
     <Content Include="css\alternative.css" />
     <Content Include="css\displaytag.css" />
     <Content Include="css\displaytagSE.css" />
+    <Content Include="css\graficas.css" />
     <Content Include="css\inicio.css" />
     <Content Include="css\load.css" />
     <Content Include="css\maven-base.css" />
@@ -158,12 +202,6 @@
     <Content Include="img\150x150.png" />
     <Content Include="img\250x250.png" />
     <Content Include="img\900x400.png" />
-    <Content Include="img\acce\acce1.jpg" />
-    <Content Include="img\acce\acce2.jpg" />
-    <Content Include="img\acce\acce3.jpg" />
-    <Content Include="img\acce\acce4.jpg" />
-    <Content Include="img\acce\acce5.jpg" />
-    <Content Include="img\acce\acce6.jpg" />
     <Content Include="img\alien.jpg" />
     <Content Include="img\arrow_down.png" />
     <Content Include="img\arrow_off.png" />
@@ -184,20 +222,56 @@
     <Content Include="img\five nights.jpg" />
     <Content Include="img\Fondo_login.jpeg" />
     <Content Include="img\FunkoMediano.jpg" />
-    <Content Include="img\funko\funko1.jpg" />
-    <Content Include="img\funko\funko2.jpg" />
-    <Content Include="img\funko\funko3.jpg" />
-    <Content Include="img\funko\funko4.jpg" />
-    <Content Include="img\funko\funko5.jpg" />
-    <Content Include="img\funko\funko6.jpg" />
     <Content Include="img\gears.jpg" />
     <Content Include="img\gear_grande2.0.jpg" />
+    <Content Include="img\gif\exito.gif" />
+    <Content Include="img\gif\null.gif" />
     <Content Include="img\grandthe.jpg" />
     <Content Include="img\ico_file_csv.png" />
     <Content Include="img\ico_file_excel.png" />
     <Content Include="img\ico_file_pdf.png" />
     <Content Include="img\ico_file_rtf.png" />
     <Content Include="img\ico_file_xml.png" />
+    <Content Include="img\jpg\1.jpg" />
+    <Content Include="img\jpg\10.jpg" />
+    <Content Include="img\jpg\11.jpg" />
+    <Content Include="img\jpg\12.jpg" />
+    <Content Include="img\jpg\13.jpg" />
+    <Content Include="img\jpg\14.jpg" />
+    <Content Include="img\jpg\15.jpg" />
+    <Content Include="img\jpg\16.jpg" />
+    <Content Include="img\jpg\17.jpg" />
+    <Content Include="img\jpg\18.jpg" />
+    <Content Include="img\jpg\19.jpg" />
+    <Content Include="img\jpg\2.jpg" />
+    <Content Include="img\jpg\20.jpg" />
+    <Content Include="img\jpg\21.jpg" />
+    <Content Include="img\jpg\22.jpg" />
+    <Content Include="img\jpg\23.jpg" />
+    <Content Include="img\jpg\24.jpg" />
+    <Content Include="img\jpg\25.jpg" />
+    <Content Include="img\jpg\26.jpg" />
+    <Content Include="img\jpg\27.jpg" />
+    <Content Include="img\jpg\28.jpg" />
+    <Content Include="img\jpg\29.jpg" />
+    <Content Include="img\jpg\3.jpg" />
+    <Content Include="img\jpg\30.jpg" />
+    <Content Include="img\jpg\31.jpg" />
+    <Content Include="img\jpg\32.jpg" />
+    <Content Include="img\jpg\33.jpg" />
+    <Content Include="img\jpg\34.jpg" />
+    <Content Include="img\jpg\35.jpg" />
+    <Content Include="img\jpg\36.jpg" />
+    <Content Include="img\jpg\37.jpg" />
+    <Content Include="img\jpg\38.jpg" />
+    <Content Include="img\jpg\39.jpg" />
+    <Content Include="img\jpg\4.jpg" />
+    <Content Include="img\jpg\40.jpg" />
+    <Content Include="img\jpg\5.jpg" />
+    <Content Include="img\jpg\6.jpg" />
+    <Content Include="img\jpg\7.jpg" />
+    <Content Include="img\jpg\8.jpg" />
+    <Content Include="img\jpg\9.jpg" />
     <Content Include="img\mandomediano.jpeg" />
     <Content Include="img\maxresdefault.jpg" />
     <Content Include="img\Mega_Mario.png" />
@@ -209,43 +283,36 @@
     <Content Include="img\paginazione_back.png" />
     <Content Include="img\Polomediano.jpg" />
     <Content Include="img\pp3.jpg" />
-    <Content Include="img\prod\prod1.jpg" />
-    <Content Include="img\prod\prod10.jpg" />
-    <Content Include="img\prod\prod11.jpg" />
-    <Content Include="img\prod\prod13.jpg" />
-    <Content Include="img\prod\prod19.jpg" />
-    <Content Include="img\prod\prod32.jpg" />
-    <Content Include="img\prod\prod33.jpg" />
-    <Content Include="img\prod\prod37.jpg" />
-    <Content Include="img\prod\prod38.jpg" />
-    <Content Include="img\prod\prod39.jpg" />
-    <Content Include="img\prod\prod40.jpg" />
-    <Content Include="img\prod\prod41.jpg" />
-    <Content Include="img\prod\prod42.jpg" />
-    <Content Include="img\prod\prod43.jpg" />
-    <Content Include="img\prod\prod44.jpg" />
-    <Content Include="img\prod\prod45.jpg" />
-    <Content Include="img\prod\prod46.jpg" />
-    <Content Include="img\prod\prod47.jpg" />
-    <Content Include="img\prod\prod48.jpg" />
-    <Content Include="img\prod\prod49.jpg" />
-    <Content Include="img\prod\prod50.jpg" />
-    <Content Include="img\prod\prod51.jpg" />
-    <Content Include="img\prod\prod52.jpg" />
-    <Content Include="img\prod\prod53.jpg" />
-    <Content Include="img\prod\prod54.jpg" />
-    <Content Include="img\prod\prod7.jpg" />
-    <Content Include="img\prod\prod8.jpg" />
+    <Content Include="img\prod\P0001.jpg" />
+    <Content Include="img\prod\P0006.jpg" />
+    <Content Include="img\prod\P0007.jpg" />
+    <Content Include="img\prod\P0010.jpg" />
+    <Content Include="img\prod\P0017.jpg" />
+    <Content Include="img\prod\P0018.jpg" />
+    <Content Include="img\prod\P0019.jpg" />
+    <Content Include="img\prod\P0020.jpg" />
+    <Content Include="img\prod\P0021.jpg" />
+    <Content Include="img\prod\P0022.jpg" />
+    <Content Include="img\prod\P0023.jpg" />
+    <Content Include="img\prod\P0024.jpg" />
+    <Content Include="img\prod\P0025.jpg" />
+    <Content Include="img\prod\P0026.jpg" />
+    <Content Include="img\prod\P0027.jpg" />
+    <Content Include="img\prod\P0028.jpg" />
+    <Content Include="img\prod\P0029.jpg" />
+    <Content Include="img\prod\P0030.jpg" />
+    <Content Include="img\prod\P0031.jpg" />
+    <Content Include="img\prod\P0032.jpg" />
+    <Content Include="img\prod\P0033.jpg" />
+    <Content Include="img\prod\P0034.jpg" />
+    <Content Include="img\prod\P0035.jpg" />
+    <Content Include="img\prod\P0036.jpg" />
+    <Content Include="img\prod\P0004.jpg" />
+    <Content Include="img\prod\P0005.jpg" />
     <Content Include="img\rep-clientes.png" />
     <Content Include="img\rep-productos.png" />
     <Content Include="img\rep-ventas.png" />
     <Content Include="img\resident.jpg" />
-    <Content Include="img\ropa\ropa1.jpg" />
-    <Content Include="img\ropa\ropa2.jpg" />
-    <Content Include="img\ropa\ropa3.jpg" />
-    <Content Include="img\ropa\ropa5.jpg" />
-    <Content Include="img\ropa\ropa6.jpg" />
-    <Content Include="img\ropa\ropa7.jpg" />
     <Content Include="img\silent.jpg" />
     <Content Include="img\sinfoto.jpg" />
     <Content Include="img\starcraft.jpg" />
@@ -260,6 +327,7 @@
     <Content Include="js\app2.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="img\catalogo\catalogo.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -287,14 +355,33 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Negocios\Index.cshtml" />
+    <Content Include="Views\Negocios\ConsultaProductos.cshtml" />
     <Content Include="Views\Negocios\InicioAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutCliente.cshtml" />
     <Content Include="Views\Negocios\InicioCliente.cshtml" />
     <Content Include="Views\Negocios\Detalles.cshtml" />
+    <Content Include="Views\Negocios\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutIndex.cshtml" />
+    <Content Include="Views\Negocios\VistaProductos.cshtml" />
+    <Content Include="Views\Negocios\Select.cshtml" />
+    <Content Include="Views\Negocios\Comprar.cshtml" />
+    <Content Include="Views\Negocios\Pago.cshtml" />
+    <Content Include="Views\Shared\_LayoutLoginCliente.cshtml" />
+    <Content Include="Views\Negocios\LoginCliente.cshtml" />
+    <Content Include="Views\Negocios\CreateProducto.cshtml" />
+    <Content Include="Views\Negocios\DescontinuarProducto.cshtml" />
+    <Content Include="Views\Negocios\LoginAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutLoginAdmin.cshtml" />
+    <Content Include="Views\Negocios\EditProducto.cshtml" />
+    <Content Include="Views\Negocios\Registro.cshtml" />
+    <Content Include="Views\Negocios\SoporteCliente.cshtml" />
+    <Content Include="Views\Negocios\SoporteAdmin.cshtml" />
+    <Content Include="Views\Negocios\Reportes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="boleta\" />
+    <Folder Include="pdf\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

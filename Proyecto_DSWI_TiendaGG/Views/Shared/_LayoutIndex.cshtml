@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Tienda GG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css">
+    <link rel="stylesheet" href="~/css/load.css">
+    <link rel="icon" type="image/png" href="img/fantasma.png">
+</head>
+<body>
+
+    @RenderBody()
+    <!-- ----------------------------- Javascript ------------------------------ -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        const logo = document.querySelectorAll("#logo path");
+
+        //console.log(logo);
+
+        for (let i = 0; i < logo.length; i++) {
+            console.log(logo[i].getTotalLength());
+        }
+    </script>
+</body>
+</html>

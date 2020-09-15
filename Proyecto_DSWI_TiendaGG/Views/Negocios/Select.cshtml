@@ -1,0 +1,83 @@
+﻿@model Proyecto_DSWI_TiendaGG.Models.Producto
+
+@{
+    ViewBag.Title = "Select";
+    
+}
+    <style>
+        .imgprod {
+            border: solid 5px #e4b210;
+            border-radius: 5px;
+        }
+
+        figcaption {
+            font-size: 16pt;
+            text-align: center;
+        }
+        figure {
+            width: 100%;
+            border: 5px solid #f2b31d;
+            border-radius: 10px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .figimg {
+            margin-left: 12px;
+            margin-right: 4px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        figcaption {
+            text-align: center;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        .btn-warning, .btn-danger {
+            font-size: 18pt;
+            color: white;
+            margin: 3px 1px 3px 1px;
+        }
+
+    </style>
+    <div class="form_wrapper" style="text-align:center; width:50%;">
+        @using (Html.BeginForm("Registra", "Negocios", FormMethod.Post))
+        {
+        <figure >
+            <img class="figimg" src="@Url.Content(Model.img_pro)" height="300" width="300">
+            <figcaption>
+                <strong>@Html.DisplayFor(model => model.desc_pro) </strong>
+                <br />
+                <strong>@Html.DisplayFor(model => model.cod_pro)</strong>
+                @Html.Hidden("cod", Model.cod_pro)
+            </figcaption>
+            <figcaption>
+                <strong>Precio</strong> : S/.@Html.DisplayFor(model => model.pre_pro)
+            </figcaption>
+            <figcaption>
+                <strong>Stock</strong> : @Html.DisplayFor(model => model.stock_pro)
+            </figcaption>
+            <figcaption>
+                <strong>Cantidad</strong>
+                <div class="input_field" style="margin-left:120px; margin-right:90px;">
+                    
+                    <span><i aria-hidden="true" class="fa fa-indent"></i></span>
+                    @Html.TextBox("cantidad", 1, new { @class = "form-control" })
+                </div>
+            </figcaption>
+            <h2 style="color:darkgoldenrod"><strong>@ViewBag.mensaje</strong></h2>
+            <br />
+        </figure>
+        <br />
+            <button class="btn btn-warning">Agregar</button>
+        }
+
+    </div>
+
+
+<p>
+    @Html.ActionLink("Retornar", "VistaProductos", null, new { @class = "btn btn-danger" })
+    @Html.ActionLink("Ir a Comprar", "Comprar", null, new { @class = "btn btn-warning" })
+</p>

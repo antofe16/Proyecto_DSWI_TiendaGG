@@ -10,10 +10,16 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css">
     <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="~/css/inicio.css">
+    <link rel="stylesheet" href="~/css/styleregistro.css">
+    <link rel="stylesheet" href="~/css/soporte.css">
     <link rel="icon" type="~/image/png" href="img/fantasma.png">
     <title>Tienda GG</title>
 </head>
-<body>
+<body style="background-color:rgba(255, 255, 255, 0.00);">
+
+    @{ List<Proyecto_DSWI_TiendaGG.Models.Detalle> carrito = (List<Proyecto_DSWI_TiendaGG.Models.Detalle>)Session["carrito"];
+        Proyecto_DSWI_TiendaGG.Models.Cliente c = (Proyecto_DSWI_TiendaGG.Models.Cliente)Session["cliente"];
+    }
 
     <!-- ------------------------------- Navbar -------------------------------- -->
     <header>
@@ -27,13 +33,12 @@
                 </div>
             </div>
             <div id="links" class="d-flex">
-                <a class="nav-link" href="">Inicio</a>
-                <a class="nav-link" href="">Tienda</a>
-                <a class="nav-logo" href="">
-                    <img src="~/img/TiendaGG-logo.png"
-                         alt="logo" width="120px" height="44">
-                </a> <a class="nav-link" href="">Videojuegos</a> 
-                <a class="nav-link" href="">Soporte</a>
+                @Html.ActionLink("Inicio", "InicioCliente", null, new { @class = "nav-link" })
+                @Html.ActionLink("Tienda", "Comprar", null, new { @class = "nav-link" })
+                <img src="~/img/TiendaGG-logo.png"
+                     alt="logo" width="120px" height="44">
+                @Html.ActionLink("Catalogo", "VistaProductos", null, new { @class = "nav-link" })
+                @Html.ActionLink("Soporte", "SoporteCliente", null, new { @class = "nav-link" })
             </div>
             <div id="l-icons" class="d-flex justify-content-end">
                 <div id="user" class="dropdown">
@@ -46,22 +51,19 @@
                             <div id="user-profile">
                                 <i class="fas fa-user-circle"></i>
                             </div>
-                            <h6 class="usuario"></h6>
-                            <p class="correo" style="color: black;"></p>
+                            <h6 class="usuario">@c.nom_cli @c.ape_cli</h6>
+                            <p class="correo" style="color: black;">@c.email_cli</p>
                         </div>
                         <div class="dropdown-divider"></div>
                         <div id="logout" class="text-center">
-                            <i class="fas fa-power-off mr-2"></i> <a href="Cerrar?opcion=closecli" class="">
-                                Cerrar
-                                sesión
-                            </a>
+                            @Html.ActionLink("Cerrar Sesion", "CerrarSesionCli", null, new { @class = "btn btn-warning" })
                         </div>
                     </div>
                 </div>
                 <div id="cart">
                     <i class="fas fa-shopping-cart mr-2" data-toggle="modal"
                        data-target="#exampleModal"></i>
-                    <div class="cart-cont"></div>
+                    <div class="cart-cont">@carrito.Count()</div>
                 </div>
             </div>
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -76,14 +78,57 @@
                             </button>
                         </div>
                         <div class="modal-body">
- 
+                            @{ if (carrito.Count() == 0)
+                                {
+                                    <div>
+                                        <h4 style="margin: 1px 10% 1px 25%">Tu carrito esta vacio :(</h4>
+                                        <br />
+                                        <img  src="~/img/gif/null.gif" width="465px" height="200px" />
+                                    </div>
+                                }
+                                else
+                                {
+                                    <table class="table table-hover">
+                                        <tr class="thead-dark">
+                                            <th> Codigo </th>
+                                            <th> Descripcion </th>
+                                            <th> Cantidad </th>
+                                            <th> Precio </th>
+                                        </tr>
+
+                                        @foreach (var detalle in carrito)
+                                        {
+                                            <tr class="thead-light">
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => detalle.cod_prod)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => detalle.desc_det)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => detalle.can_pro)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => detalle.pre_pro)
+                                                </td>
+                                            </tr>
+
+                                        }
+                                        <tr class="thead-dark">
+                                            <th colspan="4">
+                                                Total a pagar : @carrito.Sum(d => d.can_pro * d.pre_pro)
+                                            </th>
+                                        </tr>
+                                    </table>
+                                }
+                            }
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary"
+                            <button type="button" class="btn btn-danger"
                                     data-dismiss="modal">
                                 Close
                             </button>
-                            <a href="" class="btn btn-primary">Ir al carrito</a>
+                             @Html.ActionLink("Ir al carrito","Comprar",null,new { @class ="btn btn-warning"})
                         </div>
                     </div>
                 </div>
@@ -93,9 +138,9 @@
 
     <!-- ----------------------------- Fin Navbar ------------------------------ -->
     <!-- ------------------------------- Inicio -------------------------------- -->
-
-   @RenderBody()
-
+    <main  style=" padding : 50px 10% 50px 10%; background-image: url(@Url.Content("~/img/jpg/34.jpg")); background-size:100%;">
+        @RenderBody()
+    </main>
     <!-- ----------------------------- Fin Inicio ------------------------------ -->
     <!-- ------------------------------- Footer -------------------------------- -->
 
@@ -114,10 +159,10 @@
                     <div class="links-container">
                         <h5>TIENDA GG</h5>
                         <ul>
-                            <li class="link"><a href="">Inicio</a></li>
-                            <li class="link"><a href="">Tienda</a></li>
-                            <li class="link"><a href="">Videojuegos</a></li>
-                            <li class="link"><a href="">Soporte</a></li>
+                            <li class="link">@Html.ActionLink("Inicio", "InicioCliente", null, new { @class = "link" })</li>
+                            <li class="link">@Html.ActionLink("Tienda", "Comprar", null, new { @class = "link" })</li>
+                            <li class="link">@Html.ActionLink("Catalogo", "VistaProductos", null, new { @class = "link" })</li>
+                            <li class="link">@Html.ActionLink("Soporte", "SoporteCliente", null, new { @class = "link" })</li>
                         </ul>
                     </div>
                     <div class="social-media">
@@ -141,10 +186,10 @@
             <div id="close">
                 <i class="fas fa-times"></i>
             </div>
-            <a class="sidebar-link" href="Inicio.jsp">Inicio</a>
-            <a class="sidebar-link" href="VentaVideoJuegos.jsp">Tienda</a>
-            <a class="sidebar-link" href="CatalogoVideojuego.jsp">Videojuegos</a>
-            <a class="sidebar-link" href="Soporte.jsp">Soporte</a>
+            @Html.ActionLink("Inicio", "InicioCliente", null, new { @class = "sidebar-link" })
+            @Html.ActionLink("Tienda", "Comprar", null, new { @class = "sidebar-link" })
+            @Html.ActionLink("Catalogo", "VistaProductos", null, new { @class = "sidebar-link" })
+            @Html.ActionLink("Soporte", "SoporteCliente", null, new { @class = "sidebar-link" })
         </div>
     </div>
 

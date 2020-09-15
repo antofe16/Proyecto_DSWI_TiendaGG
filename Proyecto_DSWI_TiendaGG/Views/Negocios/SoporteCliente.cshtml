@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "SoporteCliente";
+    Proyecto_DSWI_TiendaGG.Models.Cliente p = (Proyecto_DSWI_TiendaGG.Models.Cliente)Session["Cliente"];
+}
+
+<section>
+    <div class="container-fluid soporte">
+        <div class="cont">
+            <img class="soporte-img" src="~/img/Mega_Mario.png">
+        </div>
+        <div class="form_wrapper" style="width:50%; height:100%">
+            <h1 style="text-align:center;">Soporte</h1>
+            <br />
+            @using (Html.BeginForm("SoporteCliente", "Negocios", FormMethod.Post))
+            {
+                <div class="input_field">
+                    <span><i aria-hidden="true" class="fas fa-align-justify"></i></span>
+                    @Html.TextBox("nombre", p.nom_cli, new { @placeholder = "Nombres", @required = "required" })
+                </div>
+                <div class="input_field">
+                    <span><i aria-hidden="true" class="fas fa-align-justify"></i></span>
+                    @Html.TextBox("apellidos", p.ape_cli, new { @placeholder = "Apellidos", @required = "required" })
+                </div>
+                <div class="input_field">
+                    <span><i aria-hidden="true" class="fa fa-phone-alt"></i></span>
+                    @Html.TextBox("telefono", p.tel_cli, new { @placeholder = "Telefono", @required = "required" })
+                </div>
+                <div class="input_field">
+                    <span><i aria-hidden="true" class="fa fa-at"></i></span>
+                    @Html.TextBox("email", p.email_cli, new { @placeholder = "Email", @required = "required" })
+                </div>
+
+                <h6>Mensaje</h6>
+                <div class="input_field">
+                    @Html.TextArea("mensaje", "", new { @placeholder = "Mensaje", @required = "required",@class="form-control",  @style="width:500px" })
+                </div>
+
+                <div class="email-btn">
+                    <button class="btn btn-dark">Enviar</button>
+                </div>
+                <br />
+                <div style="color:darkgoldenrod; text-align:center;">
+                    <strong>@ViewBag.mensaje</strong>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<br />
+<br />
+<br />
+
+<section style="background-color:white; border-radius:200px;text-align:center; font-size:18pt">
+    <br /><br />
+    <div id="tienda-online">
+        <div class="tienda mx-auto">
+            <i class="fas fa-phone-alt"></i>
+            <p style="color: black"><strong>Contacto las 24 horas.</strong></p>
+        </div>
+        <div class="tienda mx-auto">
+            <i class="fas fa-envelope"></i>
+            <p style="color: black"><strong>Envianos un mensaje por correo electronico para atenderte.</strong></p>
+        </div>
+        <div class="tienda mx-auto">
+            <i class="fas fa-directions"></i>
+            <p style="color: black"><strong>Ubicanos en Av. Diez Canseco - Cibertec, Miraflores.</strong></p>
+        </div>
+    </div>
+
+</section>

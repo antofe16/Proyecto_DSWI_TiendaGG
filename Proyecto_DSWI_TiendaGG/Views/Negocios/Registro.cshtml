@@ -1,0 +1,99 @@
+﻿@model Proyecto_DSWI_TiendaGG.Models.Cliente
+
+@{
+    ViewBag.Title = "Registro";
+}
+
+<div class="form_wrapper"
+     style="padding: 0px 25px 0px 30px; margin-bottom: 100px;">
+    <div class="form_container">
+        <br />
+        <div class="title_container">
+            <h1>Registro</h1>
+        </div>
+        <div class="row clearfix">
+
+            <div class="Ingresar" style="width:100%">
+
+                @using (Html.BeginForm("Registro", "Negocios", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.nom_cli, "", new { @class = "text-danger" })
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fas fa-align-justify" style="color:darkgoldenrod;"></i></span>
+                        @Html.EditorFor(model => model.nom_cli, new { htmlAttributes = new { @placeholder = "Ingrese sus nombres" } })
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.ape_cli, "", new { @class = "text-danger" })
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fas fa-align-justify" style="color:darkgoldenrod;"></i></span>
+                        @Html.EditorFor(model => model.ape_cli, new { htmlAttributes = new { @placeholder = "Ingrese sus apellidos" } })
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.dir_cli, "", new { @class = "text-danger" })
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fas fa-sign" style="color:darkgoldenrod;"></i></span>
+                        @Html.EditorFor(model => model.dir_cli, new { htmlAttributes = new { @placeholder = "Ingrese su direccion" } })
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.email_cli, "", new { @class = "text-danger" })
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fas fa-at" style="color:darkgoldenrod;"></i></span>
+                        @Html.EditorFor(model => model.email_cli, new { htmlAttributes = new { @placeholder = "Ingrese su email" } })
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.dni_cli, "", new { @class = "text-danger" })
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fas fa-id-card" style="color:darkgoldenrod;"></i></span>
+                        @Html.EditorFor(model => model.dni_cli, new { htmlAttributes = new { @placeholder = "Ingrese su N° de DNI" } })
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.tel_cli, "", new { @class = "text-danger" })
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fas fa-phone-square-alt" style="color:darkgoldenrod;"></i></span>
+                        @Html.EditorFor(model => model.tel_cli, new { htmlAttributes = new { @placeholder = "Ingrese su numero fijo o de celular" } })
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.usu_cli, "", new { @class = "text-danger" })
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fas fa-user" style="color:darkgoldenrod;"></i></span>
+                        @Html.EditorFor(model => model.usu_cli, new { htmlAttributes = new { @placeholder = "Ingrese su nombre de usuario" } })
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.cla_cli, "", new { @class = "text-danger" })
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fa fa-lock" style="color:darkgoldenrod;"></i></span>
+                        @Html.EditorFor(model => model.cla_cli, new { htmlAttributes = new { @placeholder = "Ingrese su contraseña" } })
+                    </div>
+
+
+                    <div class="input_field">
+                        <div style="text-align:center;">
+                            <button type="submit" class="btn btn-warning">Registrar</button>
+                            <br />
+                            <br />
+                            @Html.ActionLink("Volver al Login", "LoginCliente", null, new { @class = "btn btn-warning" })
+                        </div>
+                    </div>
+
+                    <div style="color:darkgoldenrod;">
+                        <strong>Mensaje : </strong>
+                        <h5>@ViewBag.mensaje</h5>
+                    </div>
+                    <br />
+
+                }
+
+            </div>
+            
+            <br>
+        </div>
+    </div>
+
+</div>
+
+
+

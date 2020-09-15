@@ -1,0 +1,84 @@
+﻿@model Proyecto_DSWI_TiendaGG.Models.Boleta
+
+@{
+    ViewBag.Title = "Pago";
+}
+<style>
+    .seccion {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 10px;
+        background-color: transparent;
+    }
+
+    .btn-warning, .btn-danger {
+        font-size: 18pt;
+        color: white;
+        margin: 3px 1px 3px 1px;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    
+    <div class="seccion">
+            <div class="form_wrapper" style=" width:45%;">
+                @Html.AntiForgeryToken()
+                <h1 style="text-align:center;">Detalles de Boleta</h1> <br />
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fas fa-calendar-day"></i></span>
+                        <input value="@ViewBag.fecha" type="text" readonly="readonly" />
+                    </div>
+
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fas fa-user"></i></span>
+                        <input value="@ViewBag.cli" type="text" readonly="readonly" />
+                    </div>
+
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fas fa-money-bill"></i></span>
+                        <input value="@ViewBag.total" type="text" readonly="readonly" />
+                    </div>
+
+                    <div class="form-group" style="text-align:center;">
+                        <input type="submit" value="Pagar" class="btn btn-warning" />
+                    </div>
+                    <br />
+                    <div style="color:darkgoldenrod; font-size:18pt;">
+                    <h2><strong> @ViewBag.msg </strong></h2>
+                    </div>
+
+                </div>
+
+            </div>
+            <aside class="form_wrapper" style="width:45%; text-align:center;">
+                <h1 style="text-align:center;">Datos Bancarios</h1>
+                <br />
+                <div class="input_field">
+                    <span><i aria-hidden="true" class="fas fa-credit-card"></i></span>
+                    <input placeholder="Ingrese su Nro. de Tarjeta Bancaria" type="text" required/>
+                </div>
+
+                <div class="input_field">
+                    <span><i aria-hidden="true" class="fas fa-lock"></i></span>
+                    <input placeholder="Ingrese su clave" type="password" required/>
+                </div>
+                <div class="tienda mx-auto" style="display: flex; flex-direction: row;">
+                    <i aria-hidden="true" class="fab fa-cc-visa"></i>
+                    <i aria-hidden="true" class="fab fa-cc-mastercard"></i>
+                    <i aria-hidden="true" class="fab fa-cc-diners-club"></i>
+                    <i aria-hidden="true" class="fas fa-credit-card"></i>
+                </div>               
+                    
+            </aside>
+            </div>
+    }
+
+    <div>
+        @Html.ActionLink("Volver al Inicio", "InicioCliente", null, new { @class = "btn btn-warning" })
+    </div>

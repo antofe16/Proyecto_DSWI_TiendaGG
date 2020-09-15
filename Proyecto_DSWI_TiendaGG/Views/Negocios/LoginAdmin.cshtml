@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<style>
+    .btn-warning {
+        color: white;
+    }
+</style>
+<div class="form_wrapper"
+     style="padding: 30px 0; margin-bottom: 100px;">
+    <div class="form_container">
+        <div class="title_container">
+            <h1>Login Administrativo</h1>
+        </div>
+        <div class="row clearfix">
+
+            <div class="Ingresar" style="margin-left: 90px; margin-right: 45px;">
+                @using (Html.BeginForm("LoginAdmin", "Negocios", FormMethod.Post))
+                {
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                        @Html.TextBox("usu", null, new { @placeholder = "Usuario", @required = "required" })
+                    </div>
+
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                        @Html.TextBox("cla", null, new { @placeholder = "Contraseña", @required = "required", @type = "password" })
+                    </div>
+                    <div style="margin: 0 30%;" class="row clearfix">
+                        <button class="btn btn-success" style="margin-right: 3%;">Ingresar</button>
+                    </div>
+                    <br>
+                    <div style="color: darkred;">
+                    </div>
+                }
+
+            </div>
+            <div style="text-align:center;">
+                <h5 style="margin-left: 80px; color:darkgoldenrod;">@ViewBag.mensaje</h5>
+            </div>
+            <br>
+        </div>
+  
+    </div>
+
+</div>
+

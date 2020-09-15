@@ -1,151 +1,31 @@
-﻿@model IEnumerable<Proyecto_DSWI_TiendaGG.Models.Producto>
-
+﻿
 @{
     ViewBag.Title = "Index";
-    int p = (int)ViewBag.p;
-    string term = ViewBag.term;
-    string idcat = ViewBag.idcat;
-    int c = ViewBag.c;
 }
 
-<style>
-    #botones {
-        margin: 10px 0 10px 0;
-        padding: 5px 5px 5px 5px;
-        text-align: center;
-    }
-</style>
-
-<h2>Productos</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-warning", @style = "color : white;" })
-</p>
-@using (Html.BeginForm())
-{
-    <div class="row">
-        <div class="col-md-4">
-            <em>Categoria : </em>
-            <br />
-            @Html.DropDownList("idcat", (SelectList)ViewBag.categorias, new { @class = "form-control" })
-            <br />
-        </div>
-        <div class="col-md-4">
-            <em>Descripcion : </em>
-            <br />
-            @Html.TextBox("term", null, new { @class = "form-control" })
-            <br />
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-
-        </div>
-        <div class="col-md-4">
-
-        </div>
-    </div>
-    <button name="p" value="0" class="btn btn-warning" style="color : white;">Buscar</button>
-}
-<br />
-
-<table class="table table-hover">
-    <tr class="thead-dark">
-        <th>
-            @Html.DisplayNameFor(model => model.cod_pro)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.desc_pro)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.pre_pro)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.stock_pro)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cod_cat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.est_pro)
-        </th>
-        <th colspan="1">
-
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr class="thead-light">
-            <td>
-                @Html.DisplayFor(modelItem => item.cod_pro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.desc_pro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.pre_pro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.stock_pro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cod_cat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.est_pro)
-            </td>
-            <td colspan="1">
-                @Html.ActionLink("Edit", "Edit", new { cod = item.cod_pro }) |
-                @Html.ActionLink("Detalles", "Detalles", new { cod = item.cod_pro }) |
-                @Html.ActionLink("Delete", "Delete", new { cod = item.cod_pro })
-            </td>
-        </tr>
-    }
-
-</table>
-<div id="botones">
-    @Html.ActionLink("<<",
-                          "Index",
-                          "Negocios",
-                          new { p = p, op = "-", idcat = idcat, term = term },
-                          new { @class = "btn btn-warning", @style = "color : white;" })
-    @for (int i = 0; i < (int)ViewBag.pags; i++)
-    {
-        if (c == 0)
-        {
-            <em>Haz una busqueda ;)</em>
-        }
-        if (i == (int)ViewBag.p)
-        {
-            @Html.ActionLink((i + 1).ToString(),
-                           "Index",
-                           "Negocios",
-                           new { p = i, idcat = idcat, term = term },
-                           new { @class = "btn btn-warning", @style = "color : white;" })
-        }
-        else
-        {
-            @Html.ActionLink((i + 1).ToString(),
-                         "Index",
-                         "Negocios",
-                         new { p = i, idcat = idcat, term = term },
-                         new { @class = "btn btn-default" })
-        }
-
-
-    }
-    @Html.ActionLink(">>",
-                           "Index",
-                           "Negocios",
-                           new { p = p, op = "+", idcat = idcat, term = term },
-                           new
-                               {
-                                   @class = "btn btn-warning",
-                               @style = "color : white;"
-                               })
-</div>
 <div>
-    <h3>Se encontraron @c registros</h3>
+    <svg id="logo" width="720" height="110" viewBox="0 0 720 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+        <path d="M81.6172 14.7344H48.7109V106H35.2812V14.7344H2.44531V3.625H81.6172V14.7344Z" stroke="white"
+              stroke-width="4" mask="url(#path-1-outside-1)" />
+        <path d="M111.289 106H97.7891V3.625H111.289V106Z" stroke="white" stroke-width="4"
+              mask="url(#path-1-outside-1)" />
+        <path d="M193.906 58.6797H149.539V94.9609H201.078V106H136.039V3.625H200.375V14.7344H149.539V47.6406H193.906V58.6797Z"
+              stroke="white" stroke-width="4" mask="url(#path-1-outside-1)" />
+        <path d="M296.562 106H282.992L231.453 27.1094V106H217.883V3.625H231.453L283.133 82.8672V3.625H296.562V106Z"
+              stroke="white" stroke-width="4" mask="url(#path-1-outside-1)" />
+        <path d="M320.539 106V3.625H349.438C358.344 3.625 366.219 5.59375 373.062 9.53125C379.906 13.4688 385.18 19.0703 388.883 26.3359C392.633 33.6016 394.531 41.9453 394.578 51.3672V57.9062C394.578 67.5625 392.703 76.0234 388.953 83.2891C385.25 90.5547 379.93 96.1328 372.992 100.023C366.102 103.914 358.062 105.906 348.875 106H320.539ZM334.039 14.7344V94.9609H348.242C358.648 94.9609 366.734 91.7266 372.5 85.2578C378.312 78.7891 381.219 69.5781 381.219 57.625V51.6484C381.219 40.0234 378.477 31 372.992 24.5781C367.555 18.1094 359.82 14.8281 349.789 14.7344H334.039Z"
+              stroke="white" stroke-width="4" mask="url(#path-1-outside-1)" />
+        <path d="M470.023 79.2812H427.133L417.5 106H403.578L442.672 3.625H454.484L493.648 106H479.797L470.023 79.2812ZM431.211 68.1719H466.016L448.578 20.2891L431.211 68.1719Z"
+              stroke="white" stroke-width="4" mask="url(#path-1-outside-1)" />
+        <path d="M618.734 92.5703C615.266 97.5391 610.414 101.266 604.18 103.75C597.992 106.188 590.773 107.406 582.523 107.406C574.18 107.406 566.773 105.461 560.305 101.57C553.836 97.6328 548.82 92.0547 545.258 84.8359C541.742 77.6172 539.938 69.25 539.844 59.7344V50.8047C539.844 35.3828 543.43 23.4297 550.602 14.9453C557.82 6.46094 567.945 2.21875 580.977 2.21875C591.664 2.21875 600.266 4.96094 606.781 10.4453C613.297 15.8828 617.281 23.6172 618.734 33.6484H605.234C602.703 20.1016 594.641 13.3281 581.047 13.3281C572 13.3281 565.133 16.5156 560.445 22.8906C555.805 29.2188 553.461 38.4062 553.414 50.4531V58.8203C553.414 70.3047 556.039 79.4453 561.289 86.2422C566.539 92.9922 573.641 96.3672 582.594 96.3672C587.656 96.3672 592.086 95.8047 595.883 94.6797C599.68 93.5547 602.82 91.6562 605.305 88.9844V65.9922H581.609V55.0234H618.734V92.5703Z"
+              stroke="white" stroke-width="4" mask="url(#path-1-outside-1)" />
+        <path d="M716.891 92.5703C713.422 97.5391 708.57 101.266 702.336 103.75C696.148 106.188 688.93 107.406 680.68 107.406C672.336 107.406 664.93 105.461 658.461 101.57C651.992 97.6328 646.977 92.0547 643.414 84.8359C639.898 77.6172 638.094 69.25 638 59.7344V50.8047C638 35.3828 641.586 23.4297 648.758 14.9453C655.977 6.46094 666.102 2.21875 679.133 2.21875C689.82 2.21875 698.422 4.96094 704.938 10.4453C711.453 15.8828 715.438 23.6172 716.891 33.6484H703.391C700.859 20.1016 692.797 13.3281 679.203 13.3281C670.156 13.3281 663.289 16.5156 658.602 22.8906C653.961 29.2188 651.617 38.4062 651.57 50.4531V58.8203C651.57 70.3047 654.195 79.4453 659.445 86.2422C664.695 92.9922 671.797 96.3672 680.75 96.3672C685.812 96.3672 690.242 95.8047 694.039 94.6797C697.836 93.5547 700.977 91.6562 703.461 88.9844V65.9922H679.766V55.0234H716.891V92.5703Z"
+              stroke="white" stroke-width="4" mask="url(#path-1-outside-1)" />
+    </svg>
+    <form action="" class="text-center">
+        @Html.ActionLink("INGRESAR", "LoginCliente", null, new { @class = "nav-link", @id = "boton"})
+    </form>
 </div>
+
 
