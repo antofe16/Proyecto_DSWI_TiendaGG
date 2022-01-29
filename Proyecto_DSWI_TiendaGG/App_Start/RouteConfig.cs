@@ -16,7 +16,7 @@ namespace Proyecto_DSWI_TiendaGG
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Negocios", action = "LoginCliente", id = UrlParameter.Optional }
             );
         }
     }
